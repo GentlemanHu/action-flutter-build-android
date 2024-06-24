@@ -30,13 +30,20 @@ runs:
     #         echo "installed=false" >> "$GITHUB_OUTPUT"
     #     fi
 
-    - name: Install java
-      # if: steps.check_java.outputs.installed == 'false'
-      uses: actions/setup-java@v3
+    # - name: Install java
+    #   # if: steps.check_java.outputs.installed == 'false'
+    #   uses: actions/setup-java@v3
+    #   with:
+    #     distribution: "zulu"
+    #     java-version: "17.0.9"
+    #     cache: "gradle"
+
+    - name: Setup JBR 17
+      uses: gmitch215/setup-java@e1f4c15facc0cf68c0e764340e374be034e4a859
       with:
-        distribution: "zulu"
-        java-version: "17.x"
-        cache: "gradle"
+        distribution: 'jetbrains'
+        java-version: "17.0.9"
+        cache: 'gradle'
 
     - name: Check flutter found
       id: check_flutter
