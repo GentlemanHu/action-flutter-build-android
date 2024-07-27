@@ -70,12 +70,14 @@ runs:
       run: |
         echo "$KEYSTORE" | base64 --decode > app/keystore.jks
         echo "storeFile=keystore.jks" >> key.properties
-        echo "keyAlias=upload" >> key.properties
+        echo "keyAlias=$KEY_ALIAS" >> key.properties
         echo "storePassword=$KEYSTORE_PASSWORD" >> key.properties
-        echo "keyPassword=$KEYSTORE_PASSWORD" >> key.properties
+        echo "keyPassword=$KEY_PASSWORD" >> key.properties
       env:
         KEYSTORE: ${{ inputs.keystore-base64 }}
         KEYSTORE_PASSWORD: ${{ inputs.keystore-password }}
+        KEY_ALIAS: ${{ inputs.key-alias }}
+        KEY_PASSWORD: ${{ inputs.key-password }}
       working-directory: ${{ inputs.working-directory }}/android
 
     - name: Build
